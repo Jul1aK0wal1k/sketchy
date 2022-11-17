@@ -1,7 +1,8 @@
-use fasthash::xx::hash32_with_seed;
 mod matrix;
 mod utils;
-use ndarray::Array2;
+mod sketch;
+mod hash;
+use matrix::Matrix;
 use rand::Rng;
 
 use std::{f64::consts::E as EULER, iter::repeat_with, iter::zip};
@@ -9,14 +10,14 @@ use std::{f64::consts::E as EULER, iter::repeat_with, iter::zip};
 pub struct CountMinSketch {
     rows: usize,
     columns: usize,
-    arr: Array2<u32>,
+    arr: Matrix<u32>,
     total: u64,
     seeds: Vec<u32>,
 }
 
 impl CountMinSketch {
     pub fn new(rows: usize, columns: usize) -> Self {
-        let arr = Array2::zeros((rows, columns));
+        let arr = Matrix::zeros(rows, columns);
         let mut rand = rand::thread_rng();
         let mut seeds = Vec::with_capacity(rows as usize);
         seeds.extend(repeat_with(|| rand.gen::<u32>()).take(rows as usize));

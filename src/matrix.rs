@@ -3,6 +3,10 @@ use std::ops::{Index, IndexMut};
 
 pub(crate) type Idx = (usize, usize);
 
+pub trait MatrixElement {
+    
+}
+
 pub(crate) struct Matrix<T: Sized + Default + Copy> {
     data: Vec<T>,
     rows: usize,
