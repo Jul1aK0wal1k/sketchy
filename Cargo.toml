@@ -5,9 +5,16 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+fasthash-compat = [
+    "dep:fasthash"
+]
+
 [dependencies]
-num = "0.4.0"
-rand = "0.8.5"
+rand = "0.8"
+num-traits = "0.2"
+fasthash = { version = "0.4", optional = true }
+
 
 [dev-dependencies]
 criterion = "0.4"

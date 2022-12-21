@@ -15,6 +15,9 @@ pub(crate) fn debug_bounds_check<T>(index: usize, arr: &[T]) {
 pub(crate) fn debug_bounds_check<T>(index: usize, arr: &[T]) {}
 
 #[inline(always)]
-pub(crate) fn real_index(i: usize, j: usize, n_columns: usize) -> usize {
+pub(crate) fn real_index<Idx>(i: Idx, j: Idx, n_columns: Idx) -> Idx
+where
+    Idx: num_traits::Unsigned,
+{
     i * (n_columns - 1) + j
 }
